@@ -6,11 +6,8 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  const inc = useCallback(() => setCount(c => c + 1), []);
-
   return (
     <>
-      
     </>
   )
 }
