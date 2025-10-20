@@ -5,12 +5,17 @@ const Batching = () => {
     const [flag, setFlag] = useState(false)
 
     const handleClick = () => {
-        setValue(prev => prev + 1)
-        setFlag(prev => !prev)
+        Promise.resolve().then(() => {
+            // no auto-batching in react 17
+            // but in react 18 - auto-batching
+            setValue(prev => prev + 1)
+            setFlag(prev => !prev)
+        })
     }
 
     return (
         <>
+            <p>promise</p>
             <p>{value}, {flag ? 'true' : 'false'}</p>
             <button onClick={handleClick}>Click Me</button>
         </>
