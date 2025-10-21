@@ -13,4 +13,9 @@ const work = (duration) => {
 globalThis.addEventListener('message', (ev) => {
     console.log('worker received message', ev)
     work(ev.data.duration)
+
+    globalThis.postMessage({
+        type: 'done',
+        result: 987
+    })
 })

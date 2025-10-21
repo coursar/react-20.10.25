@@ -22,21 +22,36 @@ const WorkerUsage = () => {
         return () => workerRef.current?.terminate()
     }, [])
 
-    const handleRun = (ev) => {
-        // TODO:
-        //  1. Structured Clone
-        workerRef.current?.postMessage({
-            type: 'calculate',
-            duration: 20_000
-        })
-        // 2. Transferable (HW)
-        // workerRef.current?.postMessage(buffer, [buffer]);
+    // const handleRun = (ev) => {
+    //     // TODO:
+    //     //  1. Structured Clone
+    //     workerRef.current?.postMessage({
+    //         type: 'calculate',
+    //         duration: 20_000
+    //     })
+    //     // 2. Transferable (HW) -> ArrayBuffer
+    //     // workerRef.current?.postMessage(buffer, [buffer]);
+    // }
+
+    const handleChange = async (ev) => {
+        // File -> arrayBuffer()
+        const buffer = await ev.currentTarget.files[0].arrayBuffer()
+        console.log(buffer)
+        
+        // TODO: send to worker
+
+        // in worker
+        const bytes = new Uint8Array(buffer)
+        for (const byte of bytes) {
+            console.log(byte)
+            break
+        }
     }
 
     return (
         <>
             <p>Worker result {workerResult}</p>
-            <button onClick={handleRun}>Run</button>
+            <input onChange={handleChange} type="file" name="" id="" />
         </>
     )
 }
