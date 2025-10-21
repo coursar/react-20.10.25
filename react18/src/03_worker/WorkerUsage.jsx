@@ -13,14 +13,20 @@ const WorkerUsage = () => {
             type: 'module'
         })
 
-        workerRef.current.postMessage('message')
-
         return () => workerRef.current?.terminate()
     }, [])
+
+    const handleRun = (ev) => {
+        workerRef.current?.postMessage({
+            type: 'calculate',
+            duration: 20_000
+        })
+    }
 
     return (
         <>
             Worker
+            <button onClick={handleRun}>Run</button>
         </>
     )
 }
