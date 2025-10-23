@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import Container from './04_id/ConditionalUseId'
-import StateOrder from './04_id/StateOrder'
+import DataFetchContainer from './07_fetch/DataFetch'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <StateOrder/>
+      <DataFetchContainer/>
     </>
   )
 }
